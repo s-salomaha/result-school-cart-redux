@@ -1,4 +1,4 @@
-export const products = [
+export const initialProducts = [
     {
         id: 1,
         name: 'Cupcake',
@@ -35,18 +35,3 @@ export const products = [
         image: './images/donuts.jpg'
     },
 ]
-
-export const selectors = {
-    cart: '.cart',
-    productTemplate: '.product-template',
-    product: '.product',
-    productPreview: '.product-preview img',
-    productQuantity: '.product-quantity',
-    productName: '.product-name',
-    productPrice: '.product-price',
-    increaseQuantityButton: '.product-interactions .plus',
-    decreaseQuantityButton: '.product-interactions .minus',
-    subtotal: '.subtotal .value',
-    salestax: '.salestax .value',
-    total: '.total .value',
-};
