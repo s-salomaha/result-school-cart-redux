@@ -12,13 +12,16 @@ const cartTax = document.querySelector(selectors.salestax);
 const cartTotal = document.querySelector(selectors.total);
 
 export function renderProduct(product) {
-    const productCard = productTemplate.cloneNode(true);
+    const existingCard = cart.querySelector(selectors.product + `[data-id='${product.id}']`)
+    const productCard = existingCard || productTemplate.cloneNode(true);
 
     productCard.dataset.id = product.id;
     populateProductCard(product, productCard);
     addHandlers(productCard);
 
-    cart.appendChild(productCard);
+    if (!existingCard) {
+        cart.appendChild(productCard);
+    }
 }
 
 export function populateProductCard(product, cardElement) {

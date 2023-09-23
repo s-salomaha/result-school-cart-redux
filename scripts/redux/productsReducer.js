@@ -11,6 +11,8 @@ export function productsReducer(state = products, action) {
             quantity: product.quantity + 1
           }
         }
+
+        return product
       })
 
     case DECREASE_QUANTITY_ACTION:
@@ -21,6 +23,8 @@ export function productsReducer(state = products, action) {
             quantity: product.quantity - 1
           }
         }
+
+        return product
       })
 
     default:
