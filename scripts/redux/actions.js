@@ -1,7 +1,7 @@
 export const INCREASE_QUANTITY_ACTION = 'INCREASE_QUANTITY_ACTION'
 export const DECREASE_QUANTITY_ACTION = 'DECREASE_QUANTITY_ACTION'
 
-function increaseQuantityActionCreator(id) {
+export function increaseQuantityActionCreator(id) {
   return {
     type: INCREASE_QUANTITY_ACTION,
     payload: {
@@ -10,7 +10,7 @@ function increaseQuantityActionCreator(id) {
   }
 }
 
-function decreaseQuantityActionCreator(id) {
+export function decreaseQuantityActionCreator(id) {
   return {
     type: DECREASE_QUANTITY_ACTION,
     payload: {

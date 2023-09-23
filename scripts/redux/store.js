@@ -1,4 +1,4 @@
-import { productsReducer } from './productsReducer'
+import { productsReducer } from './productsReducer.js'
 
 class Store {
   state = {}
@@ -17,5 +17,5 @@ class Store {
 }
 
 export const store = new Store({
-  products: productsReducer()
+  products: productsReducer
 })
