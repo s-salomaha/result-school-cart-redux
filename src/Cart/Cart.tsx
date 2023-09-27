@@ -1,9 +1,9 @@
 import React from "react";
 import { Product } from "../Product/Product";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../redux/hooks";
 
 export function Cart() {
-    const products = useSelector(state => state.products)
+    const products = useAppSelector(state => state.products)
 
     return (
         <ul className="cart">

@@ -1,9 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { round } from "../utils";
+import { useAppSelector } from "../redux/hooks";
 
 export function Total() {
-    const total = useSelector(state => {
+    const total = useAppSelector(state => {
         const subtotal = state.products.reduce((acc, product) => {
             return acc + product.price * product.quantity;
         }, 0);

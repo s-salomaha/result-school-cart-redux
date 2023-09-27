@@ -1,7 +1,7 @@
 import { initialProducts } from "../initialProducts"
-import { INCREASE_QUANTITY_ACTION, DECREASE_QUANTITY_ACTION } from './actions'
+import { INCREASE_QUANTITY_ACTION, DECREASE_QUANTITY_ACTION, ProjectActions } from './actions'
 
-export function productsReducer(state = initialProducts, action) {
+export function productsReducer(state = initialProducts, action: ProjectActions) {
   switch (action.type) {
     case INCREASE_QUANTITY_ACTION:
       return state.map((product) => {

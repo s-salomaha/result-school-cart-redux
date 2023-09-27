@@ -1,4 +1,6 @@
-export const initialProducts = [
+import { IProduct } from "./types/IProduct";
+
+export const initialProducts: IProduct[] = [
     {
         id: 1,
         name: 'Cupcake',
