@@ -1,11 +1,15 @@
-import { combineReducers, createStore } from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import { productsReducer } from './productsReducer'
+import {logActionMiddleware} from "./logActionMiddleware";
 
+
+const rootReducer = combineReducers({
+  products: productsReducer
+})
 
 export const store = createStore(
-  combineReducers({
-    products: productsReducer
-  })
+  rootReducer,
+  applyMiddleware(logActionMiddleware)
 )
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof rootReducer>
