@@ -5,6 +5,7 @@ import { orderReducer } from "./orderReducer";
 import thunkMiddleware from "redux-thunk"
 import { persistReducer, persistStore } from "redux-persist"
 import storage from "redux-persist/lib/storage"
+import { composeWithDevTools } from "@redux-devtools/extension"
 
 const rootReducer = persistReducer(
   { key: 'redux', storage: storage, throttle: 100000 },
@@ -16,7 +17,7 @@ const rootReducer = persistReducer(
 
 export const store = createStore(
   rootReducer,
-  applyMiddleware(thunkMiddleware, logActionMiddleware)
+  composeWithDevTools(applyMiddleware(thunkMiddleware, logActionMiddleware))
 )
 
 export const persistor = persistStore(store)
