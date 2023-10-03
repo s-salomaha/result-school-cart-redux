@@ -1,17 +1,17 @@
 import { combineReducers } from "redux";
 import { productsSlice } from './productsReducer'
 import { logActionMiddleware } from "./logActionMiddleware";
-import { orderReducer } from "./orderReducer";
+import { orderSlice } from "./orderReducer";
 import thunkMiddleware from "redux-thunk"
 import { persistReducer, persistStore } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 import { configureStore } from "@reduxjs/toolkit";
 
 const rootReducer = persistReducer(
-  { key: 'redux', storage: storage, throttle: 100000 },
+  { key: 'redux', storage: storage },
   combineReducers({
     products: productsSlice.reducer,
-    order: orderReducer
+    order: orderSlice.reducer
   })
 )
 
