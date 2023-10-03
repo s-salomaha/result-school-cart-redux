@@ -1,11 +1,11 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { combineReducers } from "redux";
 import { productsReducer } from './productsReducer'
 import { logActionMiddleware } from "./logActionMiddleware";
 import { orderReducer } from "./orderReducer";
 import thunkMiddleware from "redux-thunk"
 import { persistReducer, persistStore } from "redux-persist"
 import storage from "redux-persist/lib/storage"
-import { composeWithDevTools } from "@redux-devtools/extension"
+import { configureStore } from "@reduxjs/toolkit";
 
 const rootReducer = persistReducer(
   { key: 'redux', storage: storage, throttle: 100000 },
@@ -15,9 +15,12 @@ const rootReducer = persistReducer(
   })
 )
 
-export const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunkMiddleware, logActionMiddleware))
+export const store = configureStore(
+  {
+    reducer: rootReducer,
+    devTools: true,
+    middleware: [thunkMiddleware, logActionMiddleware]
+  }
 )
 
 export const persistor = persistStore(store)

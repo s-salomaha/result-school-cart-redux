@@ -1,4 +1,3 @@
-import { Dispatch } from "redux";
 import { TypedUseSelectorHook, useDispatch, useSelector, useStore } from "react-redux";
 import { ThunkDispatch } from "redux-thunk"
 import { ProjectActions } from "./actions";
