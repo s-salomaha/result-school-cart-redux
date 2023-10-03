@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { productsReducer } from './productsReducer'
+import { productsSlice } from './productsReducer'
 import { logActionMiddleware } from "./logActionMiddleware";
 import { orderReducer } from "./orderReducer";
 import thunkMiddleware from "redux-thunk"
@@ -10,7 +10,7 @@ import { configureStore } from "@reduxjs/toolkit";
 const rootReducer = persistReducer(
   { key: 'redux', storage: storage, throttle: 100000 },
   combineReducers({
-    products: productsReducer,
+    products: productsSlice.reducer,
     order: orderReducer
   })
 )
