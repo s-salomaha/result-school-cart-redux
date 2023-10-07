@@ -2,11 +2,20 @@ import React from "react";
 import { round } from "../utils";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { createOrder } from "../redux/orderReducer";
+import { useGetProductsQuery } from "../redux/productsReducer";
 
 export function Total() {
+    const { data: products } = useGetProductsQuery()
     const total = useAppSelector(state => {
-        const subtotal = state.products.reduce((acc, product) => {
-            return acc + product.price * product.quantity;
+        if (!products) {
+            return {
+                subtotal: 0,
+                tax: 0,
+                total: 0
+            }
+        }
+        const subtotal = products.reduce((acc, product) => {
+            return acc + product.price * (state.products[product.id] || 0)
         }, 0);
         const tax = subtotal * .13;
         const total = subtotal + tax;

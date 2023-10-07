@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { productsSlice } from './productsReducer'
+import {productsApiSlice, productsSlice} from './productsReducer'
 import { logActionMiddleware } from "./logActionMiddleware";
 import { orderSlice } from "./orderReducer";
 import thunkMiddleware from "redux-thunk"
@@ -11,7 +11,8 @@ const rootReducer = persistReducer(
   { key: 'redux', storage: storage },
   combineReducers({
     products: productsSlice.reducer,
-    order: orderSlice.reducer
+    order: orderSlice.reducer,
+    [productsApiSlice.reducerPath]: productsApiSlice.reducer
   })
 )
 
@@ -19,7 +20,7 @@ export const store = configureStore(
   {
     reducer: rootReducer,
     devTools: true,
-    middleware: [thunkMiddleware, logActionMiddleware]
+    middleware: [productsApiSlice.middleware, thunkMiddleware, logActionMiddleware]
   }
 )
 

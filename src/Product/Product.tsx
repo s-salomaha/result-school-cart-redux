@@ -6,9 +6,10 @@ import {decreaseQuantity, increaseQuantity} from "../redux/productsReducer";
 
 interface IProductProps {
   product: IProduct
+  quantity: number
 }
 
-export const Product = memo(({ product }: IProductProps) => {
+export const Product = memo(({ product, quantity }: IProductProps) => {
     const dispatch = useAppDispatch()
 
     return (
@@ -26,7 +27,7 @@ export const Product = memo(({ product }: IProductProps) => {
                     <div className="product-price">$ {product.price}</div>
                 </div>
             </div>
-            <div className="product-quantity">x{product.quantity}</div>
+            <div className="product-quantity">x{quantity}</div>
             <div className="product-interactions">
                 <div
                   className="button plus"
