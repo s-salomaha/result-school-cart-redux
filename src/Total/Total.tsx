@@ -1,11 +1,12 @@
 import React from "react";
 import { round } from "../utils";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { createOrder } from "../redux/orderReducer";
+import { useAppSelector } from "../redux/hooks";
+import { useCreateOrderMutation } from "../redux/orderReducer";
 import { useGetProductsQuery } from "../redux/productsReducer";
 
 export function Total() {
     const { data: products } = useGetProductsQuery()
+    const [createOrder, { isLoading }] = useCreateOrderMutation({ fixedCacheKey: 'order' })
     const total = useAppSelector(state => {
         if (!products) {
             return {
@@ -27,9 +28,6 @@ export function Total() {
         };
     })
 
-    const dispatch = useAppDispatch()
-    const disableBuyButton = useAppSelector(state => state.order.confirmed)
-
     return <table className="bill">
         <tbody>
             <tr className="subtotal">
@@ -48,8 +46,8 @@ export function Total() {
                 <td colSpan={2} className="button-cell">
                     <button
                       className="main-button"
-                      onClick={() => dispatch(createOrder())}
-                      disabled={disableBuyButton}
+                      onClick={() => createOrder()}
+                      disabled={isLoading}
                     >
                         Buy
                     </button>
