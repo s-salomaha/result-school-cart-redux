@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { useAppDispatch } from "../redux/hooks";
 import { IProduct } from "../types/IProduct";
-import { decreaseQuantity, increaseQuantity } from "../redux/productsReducer";
+import { decreaseQuantity, increaseQuantity } from "../redux/products";
 
 
 interface IProductProps {

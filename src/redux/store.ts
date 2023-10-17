@@ -1,17 +1,17 @@
 import { combineReducers } from "redux";
-import { productsApiSlice, productsSlice } from './productsReducer'
 import { logActionMiddleware } from "./logActionMiddleware";
-import { orderApiSlice } from "./orderReducer";
 import { persistReducer, persistStore, FLUSH, REGISTER, REHYDRATE, PAUSE, PERSIST, PURGE } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 import { configureStore } from "@reduxjs/toolkit";
+import orderReducer, { orderMiddleware, orderReducerPath } from "./order";
+import productsReducer, { productsMiddleware, productsReducerPath, productsSliceReducer } from "./products";
 
 const rootReducer = persistReducer(
   { key: 'redux', storage: storage },
   combineReducers({
-    products: productsSlice.reducer,
-    [orderApiSlice.reducerPath]: orderApiSlice.reducer,
-    [productsApiSlice.reducerPath]: productsApiSlice.reducer
+    products: productsSliceReducer,
+    [orderReducerPath]: orderReducer,
+    [productsReducerPath]: productsReducer
   })
 )
 
@@ -25,8 +25,8 @@ export const store = configureStore(
           ignoredActions: [FLUSH, REGISTER, REHYDRATE, PAUSE, PERSIST, PURGE]
         }
       }).concat([
-        orderApiSlice.middleware,
-        productsApiSlice.middleware,
+        orderMiddleware,
+        productsMiddleware,
         logActionMiddleware
       ])
     }

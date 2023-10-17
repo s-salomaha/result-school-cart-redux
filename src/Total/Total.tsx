@@ -1,8 +1,8 @@
 import React from "react";
 import { round } from "../utils";
 import { useAppSelector } from "../redux/hooks";
-import { useCreateOrderMutation } from "../redux/orderReducer";
-import { useGetProductsQuery } from "../redux/productsReducer";
+import { useCreateOrderMutation } from "../redux/order";
+import { useGetProductsQuery } from "../redux/products";
 
 export function Total() {
     const { data: products } = useGetProductsQuery()
